@@ -1,0 +1,73 @@
+window {
+    margin: 0px;
+    border: 5px solid #282828;
+    background-color: #cdd6f4;
+    border-radius: 15px;
+}
+
+#input {
+    padding: 4px;
+    margin: 15px;
+    padding-left: 20px;
+    border: none;
+    color: #cdd6f4;
+    font-weight: bold;
+    background-color: #3C3836; /* lighter gray */
+   	outline: none;
+    border-radius: 15px;
+    margin-bottom: 0px;
+    /* margin-top: 20px; */
+}
+#input:focus {
+    margin-bottom: 0px;
+}
+
+/* where the items are */
+#inner-box {
+    margin: 4px;
+    border: 10px solid #282828;
+    color: #cdd6f4;
+    font-weight: bold;
+    background-color: #282828;
+    border-radius: 15px;
+}
+
+/* everything else */
+#outer-box {
+    margin: 0px;
+    border: none;
+    border-radius: 15px;
+    background-color: #282828;
+}
+
+#scroll {
+    margin-top: 5px;
+}
+
+#img {
+    background-color: transparent;
+    padding: 5px;
+}
+
+#text:selected {
+    padding: 5px;
+    color: #cdd6f4;
+    margin: 0px;
+    border: none;
+    border-radius: 15px;
+    background-color: #689D6A;
+}
+
+#entry {
+    margin: 0px;
+    border: none;
+    border-radius: 15px;
+    background-color: transparent;
+}
+
+#entry:selected {
+    /* margin: 10px; */
+    border: none;
+    border-radius: 15px;
+    background-color: #689D6A;
+}
