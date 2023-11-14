@@ -1,0 +1,29 @@
+{
+  "pyprland": {
+    "plugins": [
+      "scratchpads",
+      "monitors",
+      "workspaces_follow_focus",
+      "magnify"
+    ]
+  },
+  "magnify": {
+      "zoom": 2
+  },
+  "scratchpads": {
+    "term": {
+      "command": "alacritty --class scratchpad",
+      "animation": "fromTop",
+      "unfocus": "hide",
+      "margin": 50
+    }
+  },
+  "monitors": {
+    "unknown": "notify-send unknown monitor",
+    "placement": {
+      "LG": {
+        "topOf": "eDP-1"
+      }
+    }
+  }
+}
