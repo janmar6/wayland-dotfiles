@@ -18,17 +18,109 @@
         "custom/power_btn",
         "custom/audio_title"
     ],
+    // "modules-right": [
+    //     "battery",
+    //     "backlight",
+    //     "custom/audio_output",
+    //     "pulseaudio",
+    //     "pulseaudio#microphone",
+    //     "custom/keyboard_layout",
+    //     "tray",
+    //     "custom/weather",
+    //     "custom/light_dark"
+    // ],
+
     "modules-right": [
-        "battery",
-        "backlight",
-        "custom/audio_output",
-        "pulseaudio",
-        "pulseaudio#microphone",
-        "custom/keyboard_layout",
-        "tray",
-        "custom/weather",
-        "custom/light_dark"
+        "group/group-power",
+        "tray"
+        // "group/hardware",
+        // "custom/weather",
+        // "group/clockxx",
     ],
+
+    "group/clockxx": {
+        "orientation": "inherit",
+        "drawer": {},
+        "modules": [
+            "clock",
+            "custom/date"
+        ]
+    },
+
+    "custom/date": {
+        "format": "~/.config/waybar/scripts/date.sh",
+        // "exec" : "~/.config/waybar/scripts/date.sh",
+        "tooltip": false
+
+    },
+
+	"group/hardware": {
+		"orientation": "inherit",
+        "drawer": {},
+		"modules": [
+            "battery",
+            "backlight",
+            "custom/audio_output",
+            "pulseaudio",
+            "pulseaudio#microphone",
+            "custom/keyboard_layout",
+            "custom/light_dark"
+		]
+	},
+
+ //    "custom/chatgpt": {
+ //        "format":"chatgpt",
+ //        "on-click": "firefox --new-window https://chat.openai.com"
+ //    },
+
+    "group/group-power": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "not-power",
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "custom/power", // First element is the "group leader" and won't ever be hidden
+            "custom/quit",
+            "custom/lock",
+            "custom/reboot"
+        ]
+    },
+    "custom/quit": {
+        "format": "󰗼 ",
+        "tooltip": false,
+        "on-click": "hyprctl dispatch exit"
+    },
+    "custom/lock": {
+        "format": "󰍁 ",
+        "tooltip": false,
+        "on-click": "swaylock"
+    },
+    "custom/reboot": {
+        "format": "󰜉 ",
+        "tooltip": false,
+        "on-click": "reboot"
+    },
+    "custom/power": {
+        "format": " ",
+        "tooltip": false,
+        "on-click": "shutdown now"
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     "custom/audio_output": {
         "format": "",
@@ -40,6 +132,7 @@
     "hyprland/window": {
         "format": "{}",
         "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+        // "on-click"
     },
 
     "custom/launch_wofi": {
@@ -53,6 +146,7 @@
         "exec" : "~/.config/waybar/scripts/keyboard-layout.sh",
         "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next",
         "on-click-right": "hyprctl switchxkblayout at-translated-set-2-keyboard prev",
+        // "interval": 10,
         "signal": 3,
         "tooltip": true
     },
@@ -84,6 +178,39 @@
         "format": "",
         "on-click": "sh -c '(sleep 0.5s; wlogout --protocol layer-shell)' & disown",
         "tooltip": false
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": " {usage}%",
+        "max-length": 10,
+        "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+    },
+
+    "disk": {
+        "interval": 30,
+        "format": "󰋊 {percentage_used}%",
+        "path": "/",
+        "tooltip": true,
+        "tooltip-format": "HDD - {used} used out of {total} on {path} ({percentage_used}%)",
+        "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+        "max-length": 10,
+        "tooltip": true,
+        "tooltip-format": "Memory - {used:0.1f}GB used",
+        "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+    },
+
+    "custom/updates": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/update-sys",
+        "on-click": "~/.config/waybar/scripts/update-sys update",
+        "interval": 300,
+        "tooltip": true
     },
 
     "hyprland/workspaces": {
@@ -121,6 +248,7 @@
     
 
    "custom/weather": {
+        //shows the current weather and forecast
         "tooltip" : true,
         "format" : "{}",
         "interval" : 30,
@@ -193,7 +321,6 @@
         "on-scroll-down": "pamixer --default-source -d 1",
         "scroll-step": 5
     }
-}
     
     // "temperature": {
     //     "thermal-zone": 1,
@@ -203,36 +330,4 @@
     //     "format-critical": " {temperatureC}°C",
     //     "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
     // }
-    // "cpu": {
-    //     "interval": 10,
-    //     "format": " {usage}%",
-    //     "max-length": 10,
-    //     "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
-    // },
-    //
-    // "disk": {
-    //     "interval": 30,
-    //     "format": "󰋊 {percentage_used}%",
-    //     "path": "/",
-    //     "tooltip": true,
-    //     "tooltip-format": "HDD - {used} used out of {total} on {path} ({percentage_used}%)",
-    //     "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
-    // },
-    //
-    // "memory": {
-    //     "interval": 30,
-    //     "format": " {}%",
-    //     "max-length": 10,
-    //     "tooltip": true,
-    //     "tooltip-format": "Memory - {used:0.1f}GB used",
-    //     "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
-    // },
-    //
-    // "custom/updates": {
-    //     "format": "{}",
-    //     "exec": "~/.config/waybar/scripts/update-sys",
-    //     "on-click": "~/.config/waybar/scripts/update-sys update",
-    //     "interval": 300,
-    //     "tooltip": true
-    // },
-    //
+}
