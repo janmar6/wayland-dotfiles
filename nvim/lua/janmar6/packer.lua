@@ -23,12 +23,15 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+    use 'norcalli/nvim-colorizer.lua'
+    use 'dylanaraps/wal.vim'
     use 'lunarvim/colorschemes'
     use 'ellisonleao/gruvbox.nvim'
     use 'mbbill/undotree'
     use 'tpope/vim-fugitive'
     use 'nvim-tree/nvim-tree.lua'
     use 'numToStr/Comment.nvim'
+
     use {
 	"windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end

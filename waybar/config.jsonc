@@ -13,27 +13,46 @@
         "hyprland/window"
     ],
     "modules-center": [
-        "custom/lock_screen",
+        "custom/weather",
         "clock",
-        "custom/power_btn",
         "custom/audio_title"
     ],
     "modules-right": [
         "battery",
-        "backlight",
         "custom/audio_output",
         "pulseaudio",
         "pulseaudio#microphone",
+
+        "custom/light_dark",
+        "custom/wallpaper_switcher",
+        "backlight",
+
         "custom/keyboard_layout",
         "tray",
-        "custom/weather",
-        "custom/light_dark"
+        "group/group-power"
     ],
+
+
+    "group/group-power": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "not-power",
+            "transition-left-to-right": true
+        },
+        "modules": [
+            "custom/lock",
+            "custom/quit",
+            "custom/reboot",
+            "custom/power",
+            "custom/suspend"
+        ]
+    },
 
     "custom/audio_output": {
         "format": "",
         "tooltip": false,
-        "on-click": "eww open audio_menu --toggle -c ~/.config/eww/aud_men/"
+        "on-click": "~/.config/waybar/scripts/wofi_audio_output.sh"
     },
 
 
@@ -49,7 +68,7 @@
     },
 
     "custom/keyboard_layout": {
-        "format": "{}",
+        "format": " {}",
         "exec" : "~/.config/waybar/scripts/keyboard-layout.sh",
         "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next",
         "on-click-right": "hyprctl switchxkblayout at-translated-set-2-keyboard prev",
@@ -68,22 +87,45 @@
         "tooltip": true
     },
 
-    "custom/lock_screen": {
-        "format": "",
-        "on-click": "sh -c '(sleep 0.5s; swaylock)' & d1sown",
-        "tooltip": false
-    },
 
     "custom/light_dark": {
-        "format": "󰐾",
-        "on-click": "~/.config/waybar/scripts/baraction light",
+        "format": "{}",
+        "exec": "grep light ~/.cache/themeis.txt && echo 󰖙  || echo 󱓤  ", 
+        "on-click": "/home/janmar6/.config/waybar/scripts/light_and_dark.sh",
+
+        "tooltip": false
+    },
+    "custom/wallpaper_switcher": {
+        "format": "",
+        "on-click": "~/.config/hypr/scripts/change_colors.sh -r",
+        "on-click-right": "~/.config/hypr/scripts/change_colors.sh",
         "tooltip": false
     },
 
-    "custom/power_btn": {
+    "custom/lock": {
+        "format": "󰍁",
+        "tooltip": false,
+        "on-click": "swaylock"
+    },
+    "custom/power": {
         "format": "",
-        "on-click": "sh -c '(sleep 0.5s; wlogout --protocol layer-shell)' & disown",
+        "tooltip": false,
+        "on-click": "shutdown now"
+    },
+    "custom/reboot": {
+        "format": "",
+        "on-click": "reboot",
         "tooltip": false
+    },
+    "custom/quit": {
+        "format": "󰗼",
+        "tooltip": false,
+        "on-click": "hyprctl dispatch exit"
+    },
+    "custom/suspend": {
+        "format": "⏼",
+        "tooltip": false,
+        "on-click": "swaylock; sleep 1; systemctl suspend"
     },
 
     "hyprland/workspaces": {

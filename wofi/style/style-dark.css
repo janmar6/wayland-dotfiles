@@ -1,73 +1,71 @@
+@import url("/home/janmar6/.cache/wal/colors-waybar.css");
+
+@define-color bg rgba(0, 0, 0, 0.3);
+@define-color fg @foreground;
+@define-color inputborder @color3;
+@define-color selection @color4;
+
 window {
-    margin: 0px;
-    border: 5px solid #282828;
-    background-color: #cdd6f4;
-    border-radius: 15px;
+    margin: 5px;
+    border: 2px solid @selection;
+    background-color: @bg;
+    /* border-radius: 15px; */
 }
 
 #input {
-    padding: 4px;
-    margin: 15px;
-    padding-left: 20px;
-    border: none;
-    color: #cdd6f4;
-    font-weight: bold;
-    background-color: #3C3836; /* lighter gray */
-   	outline: none;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 5px;
+    color: @fg;
+    border: 2px solid @inputborder;
+    background-color: transparent;
     border-radius: 15px;
-    margin-bottom: 0px;
-    /* margin-top: 20px; */
-}
-#input:focus {
-    margin-bottom: 0px;
 }
 
-/* where the items are */
+#input, #input * {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
 #inner-box {
-    margin: 4px;
-    border: 10px solid #282828;
-    color: #cdd6f4;
-    font-weight: bold;
-    background-color: #282828;
-    border-radius: 15px;
+    /* margin: 5px; */
+    /* border: 2px solid transparent; */
+    background-color: transparent;
 }
 
-/* everything else */
 #outer-box {
-    margin: 0px;
-    border: none;
-    border-radius: 15px;
-    background-color: #282828;
+    margin: 5px;
+    border: 2px solid transparent;
+    background-color: transparent;
 }
 
 #scroll {
-    margin-top: 5px;
+    margin: 5px;
+    border: 2px solid transparent;
+    background-color: transparent;
 }
 
-#img {
-    background-color: transparent;
+#text {
     padding: 5px;
-}
+    color: @fg;
+} 
 
 #text:selected {
-    padding: 5px;
-    color: #cdd6f4;
-    margin: 0px;
-    border: none;
-    border-radius: 15px;
-    background-color: #689D6A;
+    color: #eeeeee;
 }
 
 #entry {
-    margin: 0px;
-    border: none;
+    padding: 5px;
+    padding-left: 10px;
+    margin-bottom: 6px;
     border-radius: 15px;
-    background-color: transparent;
 }
 
 #entry:selected {
-    /* margin: 10px; */
-    border: none;
-    border-radius: 15px;
-    background-color: #689D6A;
+    background-color: @selection;
+}
+
+#entry:focus {
+   color: transparent;
 }

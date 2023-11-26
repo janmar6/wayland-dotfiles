@@ -12,5 +12,17 @@ if [ "$HYPRGAMEMODE" = 1 ] ; then
         keyword decoration:active_opacity 2.0;\
         keyword decoration:rounding 0"
     exit
+else
+    hyprctl --batch "\
+        keyword animations:enabled 1;\
+        keyword decoration:drop_shadow 1;\
+        keyword decoration:blur:enabled 1;\
+        keyword general:gaps_in 4;\
+        keyword general:gaps_out 6;\
+        keyword general:border_size 2;\
+        keyword decoration:inactive_opacity 1.0;\
+        keyword decoration:active_opacity 1.0;\
+        keyword decoration:rounding 10"
+
 fi
-hyprctl reload
+# hyprctl reload

@@ -1,3 +1,42 @@
+@import '/home/janmar6/.cache/wal/colors-waybar.css';
+
+@define-color waybarbbg rgba(0, 0, 0, 0);
+@define-color waybarbg @background;
+@define-color waybarfg @foreground;
+
+@define-color tooltipbg @background;
+@define-color tooltipfg @foreground;
+@define-color tooltipborder @color1;
+
+@define-color activeworkspacebg @color6;
+@define-color activeworkspacefg @background;
+
+@define-color fullworkspacefg @color5;
+@define-color emptyworkspacefg @color8;
+@define-color hoverworkspacefg @color0;
+@define-color hoverworkspacebg @color6;
+@define-color urgentworkspacefg @color0;
+@define-color urgentworkspacebg @color8;
+/* #89b4fa */
+@define-color launch_wofi @color4;
+@define-color window @foreground;
+@define-color clock @foreground;
+@define-color media @foreground;
+
+@define-color battery @color6;
+@define-color volume @color4;
+@define-color microphone @color5;
+
+@define-color keyboard @foreground;
+
+@define-color logout @color4;
+@define-color reboot @color2;
+@define-color poweroff @color1;
+@define-color suspend @color5;
+@define-color lock @color6;
+
+@define-color wallpaper_switcher @color4;
+
 * {
     border: none;
     border-radius: 0;
@@ -8,62 +47,58 @@
 }
 
 window#waybar {
-    background: rgba(0, 0, 0, 0);
-    color: #cdd6f4;
+    color: @waybarfg;
+    background: @waybarbbg;
 }
 
 tooltip {
-    background: #1e1e1e;
     opacity: 0.8;
     border-radius: 10px;
     border-width: 2px;
     border-style: solid;
-    border-color: #1e1e1e;
+    border-color: @tooltipborder;
+    background: @tooltipbg;
 }
 
 tooltip label{
-    color: #cdd6f4;
+    color: @tooltipfg;
 }
 
 #workspaces button {
-    padding: 5px;
-    color: #a6e3a1;
-    /* color: #ffffff; */
-    margin-right: 5px;
+    padding: 7px;
+    color: @fullworkspacefg;
+    margin-right: 0px;
+    border-radius: 6px;
 }
 
 #workspaces button.empty {
-    color: #888888;
+    color: @emptyworkspacefg;
 }
 
 #workspaces button:hover {
-    /* background: #a6e3a1; */
-    background: #469341;
-    color: #222222;
-    border-radius: 0px;
+    background: @hoverworkspacebg;
+    color: @hoverworkspacefg;
 }
 
 #workspaces button.active {
-    color: #000000;
-    background: #a6e3a1;
+    color: @activeworkspacefg;
+    background: @activeworkspacebg;
 }
 
 /* no idea when a workspace can be focused but not active */
 #workspaces button.focused {
     color: #ff0000;
     background: #FE8019;
-    border-radius: 10px;
 }
 
 #workspaces button.urgent {
-    color: #11111b;
-    background: #FE8019;
+    color: @urgentworkspacefg;
+    background: @urgentworkspacebg;
 }
 
 #custom-launch_wofi,
-#custom-lock_screen,
 #custom-light_dark,
-#custom-power_btn,
+#custom-wallpaper_switcher,
 #custom-power_profile,
 #custom-weather,
 #window,
@@ -81,8 +116,14 @@ tooltip label{
 #custom-audio_title,
 #custom-keyboard_layout,
 #custom-audio_output,
+#not-power,
+#custom-quit,
+#custom-lock,
+#custom-power,
+#custom-reboot,
+#custom-suspend,
 #backlight {
-    background: #1e1e2e;
+    background: @waybarbg;
     opacity: 0.8;
     padding: 0px 10px;
     margin: 3px 0px;
@@ -90,12 +131,49 @@ tooltip label{
     border: 0px;
 }
 
-#custom-keyboard_layout, #custom-lock_screen, #temperature, #custom-launch_wofi, #cpu, #battery {
+#custom-wallpaper_switcher {
+    color: @wallpaper_switcher;
+}
+#custom-keyboard_layout {
+    color: @keyboard;
+}
+#clock {
+    color: @clock;
+}
+#window {
+    color: @window;
+}
+#custom-quit {
+    color: @logout;
+}
+#custom-suspend {
+    color: @suspend;
+}
+#custom-lock {
+    color: @lock;
+}
+#custom-power {
+    color: @poweroff;
+}
+#custom-reboot {
+    color: @reboot;
+}
+
+/* LEFT SIDE */
+#custom-keyboard_layout, #temperature, #custom-launch_wofi, #cpu, #battery, #custom-weather, #custom-light_dark {
     border-radius: 10px 0px 0px 10px;
 }
 
-#custom-light_dark, #custom-power_btn, #workspaces, #pulseaudio.microphone, #disk {
+/* RIGHT SIDE */
+#window, #pulseaudio.microphone, #disk, #clock, #custom-lock, #backlight {
     border-radius: 0px 10px 10px 0px;
+    margin-right: 10px;
+}
+
+/* BOTH SIDES */
+#custom-audio_title {
+    color: @media;
+    border-radius: 10px;
     margin-right: 10px;
 }
 
@@ -112,42 +190,27 @@ tooltip label{
     padding-left: 5px;
 }
 
-#temperature.critical {
-    color: #e92d4d;
-}
-
-#custom-power_profile {
-    color: #a6e3a1;
-    border-left: 0px;
-    border-right: 0px;
-}
-
-#custom-audio_title, #window {
-    border-radius: 10px;
-    margin-left: 0px;
-    margin-right: 10px;
-}
 
 #custom-launch_wofi {
-    color: #89b4fa;
+    color: @launch_wofi;
     margin-left: 10px;
     border-right: 0px;
 }
 
 #pulseaudio, #custom-audio_output{
-    color: #89b4fa;
+    color: @volume;
     border-left: 0px;
     border-right: 0px;
 }
 
 #pulseaudio.microphone {
-    color: #cba6f7;
+    color: @microphone;
     border-left: 0px;
     border-right: 0px;
 }
 
 #battery {
-    color: #a6e3a1;
+    color: @battery;
     border-left: 0px;
 }
 
