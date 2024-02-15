@@ -4,7 +4,7 @@ playing=$(playerctl status)
 
 # 󰝛 󰝚  
 if [ -z "$playing" ]; then
-    echo "󰝛 No audio playing"
+    echo "󰝛 No audio"
     echo "Click to launch Youtube Music"
     exit 0
 

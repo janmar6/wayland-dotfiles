@@ -1,6 +1,6 @@
 @import url("/home/janmar6/.cache/wal/colors-waybar.css");
 
-@define-color bg rgba(0, 0, 0, 0.3);
+@define-color bg @background;
 @define-color fg @foreground;
 @define-color inputborder @color3;
 @define-color selection @color4;
@@ -13,6 +13,7 @@ window {
 }
 
 #input {
+    font-size: 22px;
     padding: 5px;
     padding-left: 15px;
     padding-right: 15px;
@@ -20,7 +21,7 @@ window {
     color: @fg;
     border: 2px solid @inputborder;
     background-color: transparent;
-    border-radius: 15px;
+    /* border-radius: 15px; */
 }
 
 #input, #input * {
@@ -47,19 +48,20 @@ window {
 }
 
 #text {
+    font-size: 22px;
     padding: 5px;
     color: @fg;
 } 
 
-#text:selected {
-    color: #eeeeee;
-}
+/* #text:selected { */
+/*     color: #eeeeee; */
+/* } */
 
 #entry {
     padding: 5px;
     padding-left: 10px;
     margin-bottom: 6px;
-    border-radius: 15px;
+    /* border-radius: 15px; */
 }
 
 #entry:selected {

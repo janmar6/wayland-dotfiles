@@ -1,21 +1,27 @@
 #!/bin/bash
 
-# Im so happy that I got this to work!!!!!!!!!
-# (It looks a easier than it is)
-#
 # This program gets available sinks and ports using jq and pactl
-# Then lists them using wofi using nice names
+# Then lists them using wofi using nice defined names
 # Finally turns them back into correct sinks and ports and sets the default port as that
+
+wofi_prompt="Choose audio output"
+
+if pgrep -af "$wofi_prompt" > /dev/null; then
+    # If yes, kill the existing wofi process
+    pkill -f "$wofi_prompt"
+    exit
+fi
 
 # Ugly names to pretty
 declare -A name_map
-name_map["[Out] HDMI1"]="HDMI"
-name_map["[Out] Headphones"]="Headphones"
-name_map["[Out] Speaker"]="Laptop Speakers"
-name_map["headphone-output"]="AirDots"
+name_map["[Out] HDMI1"]="󰦉   HDMI"
+name_map["[Out] Headphones"]="   Headphones"
+name_map["[Out] Speaker"]="󰌢   Laptop Speakers"
+name_map["headphone-output"]="󰂯 Bluetooth headphones"
+name_map["headset-output"]="󰂯 Bluetooth headset"
 
 
-sinks=$(pactl -f json list sinks | jq -r 'map(select(.ports[].availability != "not available") | "\"\(.name)\"\t\"\(.ports[].name)\"") | unique[]' | tr -d '"')
+sinks=$(pactl -f json list sinks | jq -r '.[] | .name as $parent_name | .ports[] | select(.availability != "not available") | "\($parent_name)\t\(.name)"')
 
 ports=$(printf "$sinks" | cut -f 2)
 
@@ -31,9 +37,12 @@ while read -r port; do
     cleaned_ports+="$port\n"
 done <<< "$ports"
 
+number_of_ports=$(printf "$cleaned_ports" | wc -l)
+# Adding two to the variable so that formatting isnt messed up.
+number_of_ports=$(($number_of_ports + 2))
 
 # Getting user input with wofi
-output=$(printf "$cleaned_ports" | wofi -l 3 -x -370 -y 10 -W 250 -d) 
+output=$(printf "$cleaned_ports" | wofi --location 3 -x -370 -y 10 --width 250 --lines "$number_of_ports" --dmenu -i -p "$wofi_prompt") 
 
 [ -z "$output" ] && exit
 

@@ -17,7 +17,6 @@
 @define-color hoverworkspacebg @color6;
 @define-color urgentworkspacefg @color0;
 @define-color urgentworkspacebg @color8;
-/* #89b4fa */
 @define-color launch_wofi @color4;
 @define-color window @foreground;
 @define-color clock @foreground;
@@ -53,7 +52,6 @@ window#waybar {
 
 tooltip {
     opacity: 0.8;
-    border-radius: 10px;
     border-width: 2px;
     border-style: solid;
     border-color: @tooltipborder;
@@ -68,7 +66,6 @@ tooltip label{
     padding: 7px;
     color: @fullworkspacefg;
     margin-right: 0px;
-    border-radius: 6px;
 }
 
 #workspaces button.empty {
@@ -94,11 +91,6 @@ tooltip label{
 #workspaces button.urgent {
     color: @urgentworkspacefg;
     background: @urgentworkspacebg;
-}
-
-#custom-launch_wofi {
-    color: @launch_wofi;
-    margin-left: 10px;
 }
 
 #custom-wallpaper_switcher {
@@ -127,6 +119,9 @@ tooltip label{
 }
 #custom-reboot {
     color: @reboot;
+}
+#custom-launch_wofi {
+    color: @launch_wofi;
 }
 #pulseaudio, #custom-audio_output{
     color: @volume;
@@ -167,26 +162,16 @@ tooltip label{
 #custom-ddcutil_brightness,
 #custom-monitor_toggle,
 #custom-gamemode,
+#idle_inhibitor,
 #backlight {
     background: @waybarbg;
     opacity: 1;
-    /* opacity: 0.8; */
     padding: 0px 10px;
-    margin-top: 10px;
     border: 0px;
 }
 
-
-/* LEFT SIDE ROUNDED*/
-#custom-keyboard_layout, #temperature, #custom-launch_wofi, #cpu, #battery, #custom-weather, #custom-light_dark, #custom-audio_title {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
-
-/* RIGHT SIDE ROUNDED*/
-#window, #pulseaudio.microphone, #disk, #clock, #custom-lock, #custom-gamemode, #custom-audio_title {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+/* MARGIN FOR RIGHT SIDE*/
+#window, #pulseaudio.microphone, #clock, #custom-gamemode, #custom-audio_title {
     margin-right: 10px;
 }
 

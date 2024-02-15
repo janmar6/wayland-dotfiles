@@ -1,0 +1,22 @@
+[pyprland]
+plugins = [
+    # "scratchpads",
+    "monitors",
+    "workspaces_follow_focus",
+    # "expose",
+    "magnify",
+]
+
+# [scratchpads.term]
+# animation = "fromTop"
+# command = "alacritty --class scratchpad"
+# unfocus = "hide"
+# size = "75% 75%"
+
+[monitors]
+unknown = "notify-send unknown monitor"
+
+[monitors.placement]
+"LG".topOF = "eDP-1"
+"UMC".topOF = "eDP-1"
+# "Lenovo".topOF = "eDP-1"

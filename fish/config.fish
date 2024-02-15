@@ -1,14 +1,24 @@
 if status is-interactive
 
     alias v='nvim'
-    alias ls='exa --color always'
-    alias sl='exa --color always'
-    alias ll='exa --color always -l'
-    alias la='exa --color always -la'
-    alias lstl='exa --color always -TL '
+    alias ls='exa --color auto'
+    alias sl='exa --color auto'
+    alias ll='exa --color auto -l'
+    alias la='exa --color auto -la'
+    alias lstl='exa --color auto -TL'
+    alias tre='exa --color auto -T'
+    alias watchfldr="watch --color -n 0.1 exa -T --color=always"
+
     alias cal='cal -m'
     alias grep='grep --color=auto'
     alias jokepls="curl https://icanhazdadjoke.com"
+
+    alias ali='alias | bat -pp -l bash'
+
+    # Couldn't get $MANPAGER to work.
+    function man
+        command man $argv | bat -l man -p
+    end
 
     alias camera='mplayer tv:// -tv driver=v4l2:width=640:height=480:device=/dev/video0 -fps 15 -vf screenshot'
 
@@ -24,6 +34,13 @@ if status is-interactive
     alias yupd='yay -Syu'
     alias ysearch='yay -Ss'
     alias ylst='yay -Q'
+
+
+    set fish_greeting
+
+    starship init fish | source
+
+end
 
     # alias frontcamera='
     # echo ⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠛⠛⠛⠋⠉⠈⠉⠉⠉⠉⠛⠻⢿⣿⣿⣿⣿⣿⣿⣿
@@ -53,7 +70,6 @@ if status is-interactive
     # echo ⣿⡿⠋⠁⠀⠀⢀⣀⣠⡴⣸⣿⣇⡄⠀⠀⠀⠀⢀⡿⠄⠙⠛⠀⣀⣠⣤⣤⠄⠀
     # sleep 99999'
 
-    # set -xU VISUAL vim
     # set -xU EDITOR vim
     # set -xU TERMCMD alacritty
     # set -xU TERMINAL alacritty
@@ -72,8 +88,3 @@ if status is-interactive
     # set -xU RUSTUP_HOME "$XDG_DATA_HOME"/rustup
     # set -xU WINEPREFIX "$XDG_DATA_HOME"/wine
 
-    set fish_greeting
-
-    starship init fish | source
-
-end
